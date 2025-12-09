@@ -15,18 +15,20 @@ export const Services = ({ title, service }: Readonly<ServicesProps>) => {
           <Link
             key={item.title}
             href={item.link}
-            className="group relative h-[55px] h-full w-full md:h-[320px] xl:h-[405px]"
+            className="group relative h-[55px] h-full w-full overflow-hidden md:h-[320px] xl:h-[405px]"
           >
             <StrapiImage
               alt={item.title || 'background'}
               src={item.image.url}
-              className="absolute inset-0 object-cover"
+              className="absolute inset-0 object-cover duration-300 group-hover:scale-110"
               fill
             />
             <div className="absolute inset-0 bg-black opacity-30 duration-300 group-hover:opacity-50" />
             <div className="relative z-10 flex h-full w-full items-center  justify-between px-2 md:items-end md:px-4 md:pb-6">
               <div className="flex flex-col justify-center font-heading md:justify-end ">
-                <span className="text-xl md:text-3xl">{item.title}</span>
+                <span className="text-xl text-white md:text-3xl">
+                  {item.title}
+                </span>
                 {item.description && (
                   <div>
                     <span>{item.description}</span>

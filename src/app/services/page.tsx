@@ -1,13 +1,13 @@
-import { getHomePageData } from '@/data/loaders'
+import { getServicesData } from '@/data/loaders'
 
 import { blockRenderer } from '@/lib/block-renderer'
 import { Block } from '@/types'
 
 export default async function Home() {
-  const strapiData = await getHomePageData()
-  // console.log('getHomepagePdata', getHomePageData())
-  // console.dir(strapiData, { depth: null })
+  const strapiData = await getServicesData()
   const { blocks } = strapiData?.data || []
+
+  console.dir(strapiData, { depth: null })
 
   return (
     <main>

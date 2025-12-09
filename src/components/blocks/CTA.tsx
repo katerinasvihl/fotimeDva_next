@@ -11,15 +11,19 @@ export const CTA = ({ title, subTitle, image, links }: Readonly<ctaProps>) => {
         className="absolute inset-0 object-cover"
         fill
       />
-      <div className="absolute inset-0 bg-black opacity-60" />
-      <div className="container relative z-10 mx-auto flex h-full w-full px-3 py-20 md:max-w-[700px] md:px-0 lg:max-w-[900px] xl:max-w-[1200px]">
+      <div className="absolute inset-0 bg-black opacity-40" />
+      <div className="container relative z-10 mx-auto flex h-full w-full px-3 py-10 md:max-w-[700px] md:px-0 md:py-20 lg:max-w-[900px] xl:max-w-[1200px]">
         <div className="flex h-full flex-col font-heading ">
-          <span className="font-body text-2xl font-semibold">{title}</span>
-          <span className="mt-4  text-2xl font-normal">{subTitle}</span>
+          <span className="font-body text-2xl font-semibold text-white">
+            {title}
+          </span>
+          <span className="mt-4  text-2xl font-normal text-white">
+            {subTitle}
+          </span>
           <div className="mt-9 flex items-center gap-8">
             {links.map((link, index) => (
               <Link
-                className={`${index === 0 ? 'mb-3 w-fit rounded-md bg-button px-10 py-2 text-black md:mb-0 ' : ''}`}
+                className={`${index === 0 ? 'mb-3 w-fit rounded-md bg-button px-10 py-2 text-black md:mb-0 ' : 'text-white'}`}
                 key={link.id}
                 href={link.url}
               >
