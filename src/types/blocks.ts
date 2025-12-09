@@ -1,4 +1,6 @@
-import { ImageProps, LinkProps } from './base'
+import { BlocksContent } from '@strapi/blocks-react-renderer'
+import { ImageProps, LinkProps, Items } from './base'
+import { Socials } from '@/components/navigation/Footer'
 
 type ComponentType =
   | 'layout.hero-section'
@@ -9,6 +11,12 @@ type ComponentType =
   | 'layout.reviews'
   | 'layout.blog-section'
   | 'layout.cta'
+  | 'layout.text-image'
+  | 'layout.work-preview'
+  | 'layout.image-list'
+  | 'layout.blog-post'
+  | 'layout.contact-form'
+  | 'layout.service-item'
 
 interface Base<
   T extends ComponentType,
@@ -32,6 +40,12 @@ export type Block =
   | ReviewsProps
   | BlogSectionProps
   | ctaProps
+  | TextImageProps
+  | WorkPreviewProps
+  | ImageListProps
+  | BlogPostProps
+  | ContactFormProps
+  | ServiceProps
 
 export interface Advantages {
   id: number
@@ -42,8 +56,8 @@ export interface HeroSectionProps extends Base<'layout.hero-section'> {
   heading: string
   subHeading: string
   image: ImageProps
-  link: LinkProps
-  advantages: Advantages[]
+  link?: LinkProps
+  advantages?: Advantages[]
 }
 
 export interface Service {
@@ -60,9 +74,9 @@ export interface ServicesProps extends Base<'layout.services'> {
 }
 
 export interface TextBlockProps extends Base<'layout.text-block'> {
-  title: string
-  description: string
-  link: LinkProps
+  title?: string
+  description?: BlocksContent
+  link?: LinkProps
 }
 
 export interface Stepps {
@@ -103,7 +117,7 @@ export interface Blog {
 }
 
 export interface BlogSectionProps extends Base<'layout.blog-section'> {
-  title: string
+  title?: string
   blog: Blog[]
 }
 
@@ -112,4 +126,49 @@ export interface ctaProps extends Base<'layout.cta'> {
   subTitle: string
   links: LinkProps[]
   image: ImageProps
+}
+
+export interface TextImageProps extends Base<'layout.text-image'> {
+  title: string
+  description: BlocksContent
+  image: ImageProps
+  reverseOrder: boolean
+}
+
+export interface WorkPreviewProps extends Base<'layout.work-preview'> {
+  images: ImageProps[]
+  link: LinkProps
+}
+
+export interface GalleryImage {
+  image: ImageProps
+  imageSize: 'big' | 'long' | 'tall' | 'normal'
+}
+
+export interface ImageListProps extends Base<'layout.image-list'> {
+  image: GalleryImage[]
+}
+
+export interface BlogPostProps extends Base<'layout.blog-post'> {
+  title: string
+  slug: string
+  description?: string
+  text: string
+  image: ImageProps
+  author: string
+  publishedAt: string
+}
+
+export interface ContactFormProps extends Base<'layout.contact-form'> {
+  title: string
+  socials: Socials[]
+}
+
+export interface ServiceProps extends Base<'layout.service-item'> {
+  image: ImageProps
+  title: string
+  price: number
+  description?: string
+  list: Items[]
+  reverseOrder?: boolean
 }

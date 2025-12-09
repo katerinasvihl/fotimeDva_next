@@ -25,6 +25,60 @@ async function fetchData(url: string) {
   }
 }
 
+export async function getGLobalPageMetaData() {
+  const url = new URL('/api/global', baseUrl)
+
+  url.search = qs.stringify({
+    fields: ['title', 'description'],
+  })
+
+  return await fetchData(url.href)
+}
+
+export async function getGlobalData() {
+  const url = new URL('/api/global', baseUrl)
+
+  url.search = qs.stringify({
+    populate: {
+      header: {
+        populate: {
+          logo: {
+            populate: {
+              logo: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+          link: {
+            populate: true,
+          },
+          button: {
+            populate: true,
+          },
+        },
+      },
+      footer: {
+        populate: {
+          logo: {
+            populate: {
+              logo: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+          socials: {
+            populate: {
+              link: true,
+            },
+          },
+        },
+      },
+    },
+  })
+
+  return await fetchData(url.href)
+}
+
 export async function getHomePageData() {
   const url = new URL('/api/home-page', baseUrl)
 
@@ -118,40 +172,58 @@ export async function getHomePageData() {
   return await fetchData(url.href)
 }
 
-export async function getGlobalData() {
-  const url = new URL('/api/global', baseUrl)
+export async function getAboutUsData() {
+  const url = new URL('/api/about-us', baseUrl)
 
   url.search = qs.stringify({
     populate: {
-      header: {
-        populate: {
-          logo: {
+      blocks: {
+        on: {
+          'layout.hero-section': {
             populate: {
-              logo: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+              advantages: {
+                populate: true,
+              },
+            },
+          },
+          'layout.text-block': {
+            populate: {
+              link: {
+                populate: true,
+              },
+            },
+          },
+          'layout.text-image': {
+            populate: {
+              image: {
                 fields: ['url', 'alternativeText'],
               },
             },
           },
-          link: {
-            populate: true,
-          },
-          button: {
-            populate: true,
-          },
-        },
-      },
-      footer: {
-        populate: {
-          logo: {
+          'layout.work-preview': {
             populate: {
-              logo: {
+              images: {
                 fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
               },
             },
           },
-          socials: {
+          'layout.cta': {
             populate: {
-              link: true,
+              links: {
+                populate: true,
+              },
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
             },
           },
         },
@@ -162,11 +234,281 @@ export async function getGlobalData() {
   return await fetchData(url.href)
 }
 
-export async function getGLobalPageMetaData() {
-  const url = new URL('/api/global', baseUrl)
+export async function getGalleryData() {
+  const url = new URL('/api/gallery-component', baseUrl)
 
   url.search = qs.stringify({
-    fields: ['title', 'description'],
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero-section': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+              advantages: {
+                populate: true,
+              },
+            },
+          },
+          'layout.image-list': {
+            populate: {
+              image: {
+                populate: {
+                  image: {
+                    fields: ['url', 'alternativeText'],
+                  },
+                },
+              },
+            },
+          },
+          'layout.cta': {
+            populate: {
+              links: {
+                populate: true,
+              },
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  return await fetchData(url.href)
+}
+
+export async function getServicesData() {
+  const url = new URL('/api/service-page', baseUrl)
+
+  url.search = qs.stringify({
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero-section': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+              advantages: {
+                populate: true,
+              },
+            },
+          },
+          'layout.services': {
+            populate: {
+              service: {
+                populate: {
+                  image: {
+                    fields: ['url', 'alternativeText'],
+                  },
+                },
+              },
+            },
+          },
+          'layout.text-block': {
+            populate: {
+              link: {
+                populate: true,
+              },
+            },
+          },
+          'layout.work-process': {
+            populate: {
+              step: true,
+            },
+          },
+          'layout.mini-gallery': {
+            populate: {
+              images: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+            },
+          },
+          'layout.cta': {
+            populate: {
+              links: {
+                populate: true,
+              },
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  return await fetchData(url.href)
+}
+
+export async function getArticles() {
+  const url = new URL('/api/articles', baseUrl)
+
+  url.search = qs.stringify({
+    populate: {
+      thumbnail: {
+        fields: ['url', 'alternativeText'],
+      },
+      author: {
+        fields: ['name'],
+      },
+    },
+  })
+
+  return await fetchData(url.href)
+}
+
+export async function getArticleBySlug(slug: string) {
+  const url = new URL('/api/articles', baseUrl)
+
+  url.search = qs.stringify({
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: {
+      thumbnail: {
+        fields: ['url', 'alternativeText'],
+      },
+      // author: {
+      //   fields: ['name'],
+      // },
+      text: {
+        populate: true,
+      },
+      content: {
+        populate: true, // Pokud máš rich text nebo bloky
+      },
+    },
+  })
+
+  const data = await fetchData(url.href)
+  return data?.data?.[0] || null
+}
+
+export async function getContactPageData() {
+  const url = new URL('/api/contact', baseUrl)
+
+  url.search = qs.stringify({
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero-section': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+              advantages: {
+                populate: true,
+              },
+            },
+          },
+          'layout.text-block': {
+            populate: {
+              link: {
+                populate: true,
+              },
+            },
+          },
+          'layout.contact-form': {
+            populate: {
+              socials: {
+                populate: {
+                  link: true,
+                },
+              },
+            },
+          },
+          'layout.cta': {
+            populate: {
+              links: {
+                populate: true,
+              },
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
+      },
+    },
+  })
+
+  return await fetchData(url.href)
+}
+
+export async function getServicePageData(slug: string) {
+  const url = new URL(`/api/services`, baseUrl)
+
+  url.search = qs.stringify({
+    filters: {
+      slug: {
+        $eq: slug,
+      },
+    },
+    populate: {
+      blocks: {
+        on: {
+          'layout.hero-section': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              link: {
+                populate: true,
+              },
+              advantages: {
+                populate: true,
+              },
+            },
+          },
+          'layout.text-block': {
+            populate: {
+              link: {
+                populate: true,
+              },
+            },
+          },
+          'layout.service-item': {
+            populate: {
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+              list: {
+                populate: true,
+              },
+            },
+          },
+          'layout.cta': {
+            populate: {
+              links: {
+                populate: true,
+              },
+              image: {
+                fields: ['url', 'alternativeText'],
+              },
+            },
+          },
+        },
+      },
+    },
   })
 
   return await fetchData(url.href)

@@ -5,9 +5,11 @@ import { StrapiImage } from './StrapiImage'
 export const BlogSection = ({ title, blog }: Readonly<BlogSectionProps>) => {
   return (
     <div className="container mx-auto mt-[60px] max-w-[1200px] px-3 md:mt-[85px] md:px-12 lg:mt-[120px] xl:px-0">
-      <div>
-        <span className="text-lg font-semibold md:text-2xl">{title}</span>
-      </div>
+      {title && (
+        <div>
+          <span className="text-lg font-semibold md:text-2xl">{title}</span>
+        </div>
+      )}
       <div className="mt-6 flex flex-col justify-between md:mt-10 md:flex-row md:gap-5">
         {blog.map((item) => (
           <Link

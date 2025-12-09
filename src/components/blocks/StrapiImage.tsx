@@ -27,8 +27,7 @@ export function StrapiImage({
     <Image
       src={imageUrl ?? imageFallback}
       alt={alt}
-      height={height ? undefined : height}
-      width={width ? undefined : width}
+      {...(!fill ? { width, height } : {})}
       fill={fill}
       className={className}
       sizes="100%"

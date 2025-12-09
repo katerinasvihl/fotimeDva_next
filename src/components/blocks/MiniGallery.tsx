@@ -12,21 +12,21 @@ export const MiniGallery = ({
       <div>
         <span className="text-lg font-semibold md:text-2xl">{title}</span>
       </div>
-      <div className="mt-6 grid-cols-1 grid-rows-1 md:mt-10 md:grid md:grid-cols-4 md:grid-rows-2 md:gap-y-5 lg:auto-cols-auto lg:grid-cols-none">
+      <div className="mt-6 grid grid-cols-2 grid-rows-3 md:mt-10 md:grid-cols-4 md:grid-rows-2 md:gap-y-5 lg:auto-cols-auto lg:grid-cols-none">
         {images.map((image, index) => (
           <div
             className={`
               relative 
               w-auto
-              ${index === 0 || index === 3 ? 'col-span-1 row-span-2 row-start-1 h-full xl:w-[330px]' : 'col-span-2 row-span-1 mx-5 h-[130px] lg:h-[180px] xl:h-[265px] xl:w-[500px]'}
-              ${index === 3 && 'col-start-4'}
+              ${index === 0 || index === 3 ? 'col-span-1 row-span-2 row-start-2 h-full md:row-start-1 xl:w-[330px]' : 'col-span-2 row-span-1 mx-5 h-[130px] lg:h-[180px] xl:h-[265px] xl:w-[500px]'}
+              ${index === 3 && 'col-start-2 row-start-2 md:col-start-4'}
             `}
             key={image.id}
           >
             <StrapiImage
               alt={image.alternativeText || 'background'}
               src={image.url}
-              className="absolute inset-0 h-full  object-cover"
+              className="absolute inset-0 h-full w-full object-cover"
               fill
             />
           </div>
@@ -43,7 +43,3 @@ export const MiniGallery = ({
     </div>
   )
 }
-
-// ${index === 0 || index === 3 ? 'col-span-1 row-span-2 row-start-1 row-end-2 h-[550px]' : 'col-span-2 col-start-2  row-span-1 h-[280px]'}
-// ${index === 0 && 'col-start-1'}
-// ${index === 3 && 'col-start-4'}

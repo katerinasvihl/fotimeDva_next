@@ -11,12 +11,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#3D4248', // Hlavní barva pozadí
-        foreground: '#FAFAFA', // Barva textu
-        button: '#FFD700', // Barva tlačítek
-        text: '#1F232F', // Tmavší barva textu
+        background: '#f5f5f5', // Hlavní barva pozadí
+        foreground: '#3D4248', // Barva textu
+        button: '#6daab3', // Barva tlačítek
+        text: '#050316', // Tmavší barva textu
         lightBackground: '#6C757D', // Světlejší barva pozadí
         borderLine: '#ebebeb',
+        primary: '#94c8d1',
+        secondary: '94c8d1',
 
         card: {
           DEFAULT: 'hsl(var(--card))',
@@ -26,14 +28,14 @@ export default {
           DEFAULT: 'hsl(var(--popover))',
           foreground: 'hsl(var(--popover-foreground))',
         },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
+        // primary: {
+        //   DEFAULT: 'hsl(var(--primary))',
+        //   foreground: 'hsl(var(--primary-foreground))',
+        // },
+        // secondary: {
+        //   DEFAULT: 'hsl(var(--secondary))',
+        //   foreground: 'hsl(var(--secondary-foreground))',
+        // },
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
@@ -69,6 +71,11 @@ export default {
       },
       gridTemplateColumns: {
         '330': 'repeat(4, 330px)',
+      },
+      screens: {
+        wide: { raw: '(min-aspect-ratio: 16/9)' },
+        tall: { raw: '(max-aspect-ratio: 16/9)' },
+        short: { raw: '(max-height: 800px)' },
       },
     },
   },

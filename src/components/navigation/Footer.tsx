@@ -3,8 +3,8 @@ import Icon from '../blocks/ui/Icon'
 import { LinkProps, Logo } from '@/types/base'
 import { StrapiImage } from '../blocks/StrapiImage'
 
-interface Socials {
-  icon: 'instagram' | 'facebook' | 'yourube'
+export interface Socials {
+  icon: 'instagram' | 'facebook' | 'youtube'
   link: LinkProps
 }
 
@@ -23,14 +23,14 @@ export const Footer = ({
 }: Readonly<FooterProps>) => {
   return (
     <div className="border-t border-borderLine/30 py-8 lg:py-2">
-      <div className="container mx-auto flex max-w-[1200px] flex-col items-center justify-between gap-8  md:px-12 lg:flex-row  xl:px-0">
+      <div className="container mx-auto flex max-w-[1400px] flex-col items-center justify-between gap-8  md:px-12 lg:flex-row  xl:px-0">
         <Link
-          href={logo.logo.url}
+          href={logo.url}
           className="relative h-[60px] w-[230px] lg:h-[60px] lg:w-[220px]"
         >
           <StrapiImage
             src={logo.logo.url}
-            alt={logo.logo.alternativeText}
+            alt={logo.logo.alternativeText || logo.logo.url}
             fill
             className="absolute inset-0 object-cover"
           />

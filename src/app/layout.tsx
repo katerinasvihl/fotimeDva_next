@@ -32,14 +32,16 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const globalData = await getGlobalData()
-  console.dir(globalData, { depth: null })
+  // console.dir(globalData, { depth: null })
 
   const headerData = globalData.data.header
   const footerData = globalData.data.footer
 
   return (
     <html lang="en">
-      <body className={`${roboto.variable} ${poppins.variable} antialiased`}>
+      <body
+        className={`${roboto.variable} ${poppins.variable} overflow-x-hidden antialiased`}
+      >
         <Header {...headerData} />
         {children}
         <Footer {...footerData} />
