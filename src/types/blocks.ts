@@ -45,7 +45,7 @@ export type Block =
   | ImageListProps
   | BlogPostProps
   | ContactFormProps
-  | ServiceProps
+  | ServiceItemProps
 
 export interface Advantages {
   id: number
@@ -107,20 +107,6 @@ export interface ReviewsProps extends Base<'layout.reviews'> {
   reviews: Review[]
 }
 
-export interface Blog {
-  title: string
-  description: string
-  text: string
-  id: number
-  image: ImageProps
-  link: string
-}
-
-export interface BlogSectionProps extends Base<'layout.blog-section'> {
-  title?: string
-  blog: Blog[]
-}
-
 export interface ctaProps extends Base<'layout.cta'> {
   title: string
   subTitle: string
@@ -164,11 +150,25 @@ export interface ContactFormProps extends Base<'layout.contact-form'> {
   socials: Socials[]
 }
 
-export interface ServiceProps extends Base<'layout.service-item'> {
-  image: ImageProps
+export interface ServiceItemProps extends Base<'layout.service-item'> {
   title: string
+  description?: string | null
+  reverseOrder?: boolean | null
   price: number
-  description?: string
+  image: ImageProps
   list: Items[]
-  reverseOrder?: boolean
+}
+
+export interface Blog {
+  title: string
+  description: string
+  text: string
+  id: number
+  image: ImageProps
+  link: string
+}
+
+export interface BlogSectionProps extends Base<'layout.blog-section'> {
+  title?: string
+  blog: Blog[]
 }

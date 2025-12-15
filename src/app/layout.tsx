@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Roboto_Condensed, Poppins } from 'next/font/google'
-import { getGlobalData, getGLobalPageMetaData } from '@/data/loaders'
+import { getGlobalData, getGlobalPageMetadata } from '@/data/loaders'
 import './globals.css'
 import { Header } from '@/components/navigation/Header'
 import { Footer } from '@/components/navigation/Footer'
@@ -17,8 +17,8 @@ const poppins = Poppins({
   weight: ['400', '500', '600'],
 })
 
-export async function generateMetaData(): Promise<Metadata> {
-  const metadata = await getGLobalPageMetaData()
+export async function generateMetadata(): Promise<Metadata> {
+  const metadata = await getGlobalPageMetadata()
 
   return {
     title: metadata?.data?.title ?? 'Fotíme Dva',
@@ -32,8 +32,6 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   const globalData = await getGlobalData()
-  // console.dir(globalData, { depth: null })
-
   const headerData = globalData.data.header
   const footerData = globalData.data.footer
 

@@ -1,4 +1,4 @@
-import { ServiceProps } from '@/types/blocks'
+import { ServiceItemProps } from '@/types/blocks'
 import { StrapiImage } from './StrapiImage'
 import Icon from './ui/Icon'
 
@@ -9,12 +9,12 @@ export const Service = ({
   image,
   list,
   reverseOrder,
-}: Readonly<ServiceProps>) => {
+}: Readonly<ServiceItemProps>) => {
   return (
     <div className="container mx-auto mt-[60px] max-w-[1200px] px-3 md:mt-[85px] md:px-12 lg:mt-[120px] xl:px-0">
       <div className="flex flex-col items-start justify-around gap-5 md:flex-row md:items-center">
         <div
-          className={`${reverseOrder ? 'order-2' : 'order-2 md:order-1'} relative h-[320px] h-full w-full max-w-[480px] xl:h-[550px]`}
+          className={`${reverseOrder ? 'order-2' : 'order-2 md:order-1'} relative h-[320px] w-full max-w-[480px] xl:h-[550px]`}
         >
           <StrapiImage
             src={image.url}
@@ -31,8 +31,8 @@ export const Service = ({
           {description && <span className=" pt-3 xl:pt-5">{description}</span>}
           {list && (
             <div className="mt-3">
-              {list.map((item) => (
-                <div key={item.index} className="py-1">
+              {list.map((item, index) => (
+                <div key={index} className="py-1">
                   <Icon icon={item.icon} className="h-[30px] w-[30px]" />
                   <span className="ml-2 font-medium opacity-60">
                     {item.item}
