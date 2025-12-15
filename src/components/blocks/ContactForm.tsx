@@ -4,10 +4,15 @@ import Link from 'next/link'
 import Icon from '../blocks/ui/Icon'
 import { ContactFormProps } from '@/types/blocks'
 import { useState } from 'react'
+import Snackbar from '../ui/snackbar'
 
 export const ContactForm = ({ title, socials }: Readonly<ContactFormProps>) => {
   const [loading, setLoading] = useState(false)
-  const [success, setSuccess] = useState(false)
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: '',
+    variant: 'success' as 'success' | 'error',
+  })
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -21,19 +26,31 @@ export const ContactForm = ({ title, socials }: Readonly<ContactFormProps>) => {
       message: formData.get('message') as string,
     }
 
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
 
-    setLoading(false)
-
-    if (res.ok) {
-      setSuccess(true)
+      if (!res.ok) {
+        throw new Error('Request failed')
+      }
+      setSnackbar({
+        open: true,
+        message: 'Zpráva úspěšně odeslána 🎉',
+        variant: 'success',
+      })
       e.currentTarget.reset()
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message: 'Něco se pokazilo. Zkuste to prosím znovu.',
+        variant: 'error',
+      })
+    } finally {
+      setLoading(false)
     }
-    console.log(data)
   }
 
   return (
@@ -71,9 +88,12 @@ export const ContactForm = ({ title, socials }: Readonly<ContactFormProps>) => {
           {loading ? 'Odesílám...' : 'Odeslat zprávu'}
         </button>
 
-        {success && (
-          <p className="text-green-600">Zpráva úspěšně odeslána 🎉</p>
-        )}
+        <Snackbar
+          open={snackbar.open}
+          message={snackbar.message}
+          variant={snackbar.variant}
+          onClose={() => setSnackbar((prev) => ({ ...prev, open: false }))}
+        />
       </form>
       {Array.isArray(socials) && socials?.length ? (
         <div className="mt-10 flex justify-center gap-4">

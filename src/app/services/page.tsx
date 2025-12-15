@@ -7,8 +7,6 @@ export default async function Home() {
   const strapiData = await getServicesData()
   const { blocks } = strapiData?.data || []
 
-  console.dir(strapiData, { depth: null })
-
   return (
     <main>
       {blocks.map((block: Block, index: number) => blockRenderer(block, index))}

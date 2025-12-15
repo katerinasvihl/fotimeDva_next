@@ -5,8 +5,6 @@ import { Block } from '@/types'
 
 export default async function Home() {
   const strapiData = await getGalleryData()
-  // console.log('getGalleryData', getGalleryData())
-  // console.dir(strapiData, { depth: null })
   const { blocks } = strapiData?.data || []
 
   return (

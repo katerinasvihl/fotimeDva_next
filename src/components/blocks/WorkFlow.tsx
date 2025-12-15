@@ -20,7 +20,7 @@ export const WorkFlow = ({ title, step }: Readonly<WorkFlowProps>) => {
   }, [])
 
   return (
-    <div className="mt-[60px] h-full w-full bg-lightBackground px-3 md:mt-[85px] md:px-12 lg:mt-[120px] lg:px-28">
+    <div className="mt-[60px] h-full w-full bg-borderLine px-3 md:mt-[85px] md:px-12 lg:mt-[120px] lg:px-28">
       <div className="container mx-auto mt-[60px] max-w-[1200px] px-3 py-10 md:mt-[85px] md:px-12 md:py-[60px] lg:mt-[120px] xl:px-0">
         <div>
           <span className="text-lg font-semibold text-text md:text-2xl">
@@ -33,18 +33,20 @@ export const WorkFlow = ({ title, step }: Readonly<WorkFlowProps>) => {
             className="w-full xl:flex xl:justify-between"
           >
             <CarouselContent className="-ml-0 h-full xl:w-full xl:justify-between">
-              {step.map((item) => (
+              {step.map((item, index) => (
                 <CarouselItem
                   className="flex h-full basis-full flex-col pl-0 pr-5 text-text md:basis-1/2 xl:max-w-[260px] xl:pr-0"
-                  key={item.title}
+                  key={index}
                 >
                   <Icon icon={item.icon} className="h-[62px] w-[62px]" />
-                  <span className="my-2 max-h-[64px] flex-1 text-2xl font-semibold">
-                    {item.title}
-                  </span>
-                  <span className="font-semibold opacity-50">
-                    {item.description}
-                  </span>
+                  <div className="my-2 flex flex-col">
+                    <span className="max-h-[64px] text-2xl font-semibold">
+                      {item.title}
+                    </span>
+                    <span className="font-semibold opacity-50">
+                      {item.description}
+                    </span>
+                  </div>
                 </CarouselItem>
               ))}
             </CarouselContent>
