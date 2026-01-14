@@ -101,7 +101,7 @@ export const ContactForm = ({ title, socials }: Readonly<ContactFormProps>) => {
             <Link
               key={link.link?.id}
               href={link.link?.url}
-              className="flex items-center transition-transform duration-300 hover:scale-125"
+              className="flex max-w-[50px] items-center transition-transform duration-300 hover:scale-125"
             >
               <Icon icon={link.icon} className="h-10 w-auto" />
             </Link>
