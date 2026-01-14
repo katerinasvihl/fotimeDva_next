@@ -25,11 +25,11 @@ export default function Error({
         <h1 className="text-4xl font-bold text-foreground">
           Ups! Něco se pokazilo.
         </h1>
-        <p className="text-lg text-foreground">
+        <p className="text-center text-lg text-foreground">
           Vyskytla se nějaká chyba, kterou se snažíme vyřešit. Zkuste to prosím
           později.
         </p>
-        <p className="italic text-button">{error.message}</p>
+        <p className="text-center italic text-button">{error.message}</p>
       </div>
     </div>
   )
