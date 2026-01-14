@@ -16,20 +16,20 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex flex-col items-center justify-center lg:min-h-[calc(100vh-77px)]">
+    <div className="flex min-h-[calc(100vh-60px)] flex-col items-center justify-center px-3 lg:min-h-[calc(100vh-77px)]">
       <div className="flex flex-1 flex-col items-center justify-center gap-4">
         <Icon
-          icon="camera-slash"
+          icon="camera-off"
           className="h-[120px] w-[120px] text-foreground"
         />
         <h1 className="text-4xl font-bold text-foreground">
           Ups! Něco se pokazilo.
         </h1>
-        <p className="text-lg text-foreground">
+        <p className="text-center text-lg text-foreground">
           Vyskytla se nějaká chyba, kterou se snažíme vyřešit. Zkuste to prosím
           později.
         </p>
-        <p className="italic text-button">{error.message}</p>
+        <p className="text-center italic text-button">{error.message}</p>
       </div>
     </div>
   )

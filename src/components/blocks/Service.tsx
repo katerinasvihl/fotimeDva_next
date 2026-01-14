@@ -32,9 +32,12 @@ export const Service = ({
           {list && (
             <div className="mt-3">
               {list.map((item, index) => (
-                <div key={index} className="py-1">
-                  <Icon icon={item.icon} className="h-[30px] w-[30px]" />
-                  <span className="ml-2 font-medium opacity-60">
+                <div key={index} className="flex items-start py-1">
+                  <Icon
+                    icon={item.icon}
+                    className="h-[30px] w-[30px] shrink-0"
+                  />
+                  <span className="ml-2 mt-1 font-medium opacity-60">
                     {item.item}
                   </span>
                 </div>
