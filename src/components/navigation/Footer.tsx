@@ -23,7 +23,7 @@ export const Footer = ({
 }: Readonly<FooterProps>) => {
   return (
     <div className="border-t border-borderLine/30 py-8 lg:py-2">
-      <div className="overfow-hidden container mx-auto flex max-w-[320px] flex-col items-center justify-between gap-8 md:px-12 lg:max-w-[1400px] lg:flex-row xl:px-0">
+      <div className="container mx-auto flex max-w-[320px] flex-col items-center justify-between gap-8 overflow-hidden md:px-12 lg:max-w-[1400px] lg:flex-row xl:px-0">
         <Link
           href={logo.url}
           className="relative h-[60px] w-[230px] lg:h-[60px] lg:w-[220px]"
