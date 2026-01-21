@@ -24,7 +24,7 @@ export async function getAllServicesSlugs() {
 
 export async function getGlobalPageMetadata() {
   const fallback = {
-    title: 'Fotíme Dva',
+    title: 'Kateřina Švihlová',
     description: 'Profesionální focení',
   }
 
